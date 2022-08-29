@@ -19,17 +19,28 @@
       #    - include_tasks: tasks/node-setup.yml
       #    - include_tasks: tasks/npm-packages.yml
       #    - include_tasks: tasks/zsh-setup.yml
-    - include_tasks: tasks/slack-setup.yml
+
+    - name: install-slack
+      include_tasks: tasks/slack-setup.yml
+      tags: slack
+
+    - name: Install Aws
+      include_tasks: tasks/aws-setup.yml
+      tags: aws
+
     - block:
       - name: Include nvim
         include_tasks: tasks/nvim-setup.yml
         tags: neovim
+
     - include_tasks: tasks/brave.yml
+
     - block:
       - name: Include Debugge
         include_tasks: tasks/debugger.yml
         tags: debugger
       #    - include_tasks: tasks/dotfiles.yml
+
     - include_tasks: tasks/productivity-tools.yml
       #    - include_tasks: tasks/lsp.yml
 

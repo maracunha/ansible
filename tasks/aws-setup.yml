@@ -1,0 +1,21 @@
+- name: remove aws if has
+  shell: rm -rf ~/personal/tmp/aws
+  tags:
+  - aws
+
+- name: create aws folder
+  shell: mkdir -p {{ personal }}/tmp/aws
+  tags:
+  - aws
+
+- name: download aws command line
+  ansible.builtin.shell:
+    cmd: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" > {{ personal }}/tmp/aws/awscliv2.zip
+  tags:
+  - aws
+
+- name: Install aws coma command line
+  shell: cd {{ personal }}/tmp/aws | unzip awscliv2.zip | sudo aws/./install
+  tags:
+  - aws
+
