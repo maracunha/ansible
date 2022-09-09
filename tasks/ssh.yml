@@ -16,15 +16,6 @@
     - dotfiles
     - install
     - ssh
-- name: Install ssh key public
-  copy:
-    src: "{{ source_key }}.pub"
-    dest: "{{ dest_key }}.pub"
-    mode: 0644
-  tags:
-    - dotfiles
-    - install
-    - ssh
 - name: Set authorized key took from file
   authorized_key:
     user: "{{ lookup('env', 'USER') }}"
