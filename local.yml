@@ -14,14 +14,20 @@
       - install
       - core
   tasks:
-#    - include_tasks: tasks/ssh.yml
-    - include_tasks: tasks/dotfiles.yml
+    - name: SSH Install
+      include_tasks: tasks/ssh.yml
+      tags: ssh
+
+#    - include_tasks: tasks/dotfiles.yml
     - include_tasks: tasks/core-setup.yml
-    # - include_tasks: tasks/node-setup.yml
+    
+    - name: Node
+      include_tasks: tasks/node-setup.yml
+      tags: node
 
     - name: Npm Packages
       include_tasks: tasks/npm-packages.yml
-      tags: node
+      tags: npm-packages
 
     - name: Include nvim
       include_tasks: tasks/nvim-setup.yml
@@ -47,8 +53,11 @@
       include_tasks: tasks/debugger.yml
       tags: debugger
   
-
     - name: Productivity Tools
       include_tasks: tasks/productivity-tools.yml
       tags: productivity
+
+        #    - name: Docker
+        #      include_tasks: tasks/docker.yml
+        #      tags: docker
 
